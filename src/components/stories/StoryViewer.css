@@ -33,6 +33,8 @@
     flex: 1;
     height: 2px;
     background: rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    border-radius: 2px;
 }
 
 .story-progress-fill {
@@ -52,6 +54,68 @@
     color: white;
 }
 
+/* NEW: Header Actions & Buttons */
+.story-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+    /* Push to right */
+}
+
+.story-action-icon,
+.story-close-btn {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.story-action-icon:hover,
+.story-close-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.story-action-icon:active,
+.story-close-btn:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Red tint for delete button hover */
+.story-action-icon:hover {
+    background: rgba(255, 59, 48, 0.2);
+    border-color: rgba(255, 59, 48, 0.3);
+    color: #ff3b30;
+}
+
+.story-user-info h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.story-user-info span {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
 .story-media-container {
     width: 100%;
     height: 100%;
@@ -69,10 +133,12 @@
     align-items: center;
     gap: 8px;
     background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
     padding: 6px 12px;
     border-radius: 20px;
     color: white;
     pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .story-footer {
@@ -80,20 +146,99 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 20px 16px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 20px 16px 30px;
+    /* Extra padding for bottom safe area */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .story-comment-input {
     display: flex;
     gap: 12px;
+    align-items: center;
 }
 
 .story-comment-input input {
     flex: 1;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
+    border-radius: 24px;
     color: white;
-    padding: 10px 16px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.story-comment-input input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.story-comment-input input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.story-comment-input button {
+    background: white;
+    color: black;
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.story-comment-input button:hover {
+    transform: scale(1.1);
+}
+
+.story-comment-input button:active {
+    transform: scale(0.9);
+}
+
+/* Viewer List Styling */
+.story-owner-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    width: fit-content;
+}
+
+.viewer-list-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    display: flex;
+    align-items: flex-end;
+}
+
+.viewer-list-modal {
+    background: #1e1e1e;
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    padding: 20px;
+    max-height: 70vh;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
