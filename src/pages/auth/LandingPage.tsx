@@ -21,7 +21,13 @@ export function LandingPage() {
 
     const handleInstallClick = async () => {
         if (!deferredPrompt) {
-            alert('To install: tap the share icon and "Add to Home Screen"')
+            // For iOS or if the prompt isn't ready, show instructions
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+            if (isIOS) {
+                alert('To install: tap the Share icon below, then "Add to Home Screen"');
+            } else {
+                alert('App installation is not available or already installed. Check your browser menu.');
+            }
             return
         }
         deferredPrompt.prompt()
