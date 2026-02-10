@@ -1,0 +1,13 @@
+﻿src/components/chat/ChatInfo.tsx(2,13): error TS6133: 'User' is declared but its value is never read.
+src/components/chat/MessageInfo.tsx(15,12): error TS6133: 'loading' is declared but its value is never read.
+src/components/chat/MessageItem.tsx(18,11): error TS6133: 'profile' is declared but its value is never read.
+src/components/layout/NotificationCenter.tsx(5,18): error TS6133: 'Avatar' is declared but its value is never read.
+src/components/layout/NotificationCenter.tsx(135,79): error TS2339: Property 'title' does not exist on type 'Notification'.
+src/components/ui/ShareModal.tsx(1,10): error TS6133: 'X' is declared but its value is never read.
+src/components/ui/ShareModal.tsx(3,1): error TS6133: 'useState' is declared but its value is never read.
+src/pages/admin/Reports.tsx(7,1): error TS6133: 'Button' is declared but its value is never read.
+src/pages/ChatRoom.tsx(3,36): error TS6133: 'ImageIcon' is declared but its value is never read.
+src/pages/Profile.tsx(2,34): error TS6133: 'Link' is declared but its value is never read.
+src/pages/Profile.tsx(4,1): error TS6133: 'supabase' is declared but its value is never read.
+src/pages/Profile.tsx(27,12): error TS6133: 'followerCount' is declared but its value is never read.
+src/pages/Profile.tsx(27,27): error TS6133: 'setFollowerCount' is declared but its value is never read.

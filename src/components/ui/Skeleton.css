@@ -1,0 +1,40 @@
+.skeleton {
+    background: linear-gradient(90deg,
+            var(--color-bg-surface) 0%,
+            rgba(148, 163, 184, 0.1) 50%,
+            var(--color-bg-surface) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    border-radius: var(--radius-md);
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.skeleton-text {
+    height: 16px;
+    margin-bottom: var(--space-2);
+}
+
+.skeleton-circular {
+    border-radius: var(--radius-full);
+}
+
+.skeleton-rectangular {
+    border-radius: var(--radius-md);
+}
+
+.skeleton-post,
+.skeleton-chat {
+    padding: var(--space-4);
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+}
