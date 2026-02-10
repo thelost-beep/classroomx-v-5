@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Download, LogIn, BookOpen, Sparkles, Smartphone } from 'lucide-react'
 import { Button } from '@/components/ui'
@@ -7,20 +7,14 @@ import './LandingPage.css'
 export function LandingPage() {
     const navigate = useNavigate()
     const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
-    const [isInstallable, setIsInstallable] = useState(false)
 
     useEffect(() => {
         const handleBeforeInstallPrompt = (e: any) => {
             e.preventDefault()
             setDeferredPrompt(e)
-            setIsInstallable(true)
         }
 
         window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            setIsInstallable(false)
-        }
 
         return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
     }, [])
@@ -34,7 +28,6 @@ export function LandingPage() {
         const { outcome } = await deferredPrompt.userChoice
         console.log(`User response to the install prompt: ${outcome}`)
         setDeferredPrompt(null)
-        setIsInstallable(false)
     }
 
     const handleLoginClick = () => {
