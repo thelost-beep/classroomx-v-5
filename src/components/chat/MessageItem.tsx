@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import { Check, CheckCheck, Reply, Clock, X } from 'lucide-react'
 import { Avatar } from '@/components/ui'
 import { MessageInfo } from './MessageInfo'
+import { useNavigate } from 'react-router-dom'
 import './MessageItem.css'
 
 interface MessageItemProps {
@@ -15,6 +16,7 @@ interface MessageItemProps {
 }
 
 export function MessageItem({ message, isOwn, showAvatar, showSenderName, onReaction, onReply }: MessageItemProps) {
+    const navigate = useNavigate()
     const [showInfo, setShowInfo] = useState(false)
     const [showActions, setShowActions] = useState(false)
 
@@ -29,6 +31,14 @@ export function MessageItem({ message, isOwn, showAvatar, showSenderName, onReac
     const handleTickClick = (e: React.MouseEvent) => {
         e.stopPropagation()
         setShowInfo(true)
+    }
+
+    const handleSharedContentClick = () => {
+        if (message.type === 'post' && message.extra_data?.post_id) {
+            navigate(`/post/${message.extra_data.post_id}`)
+        } else if (message.type === 'profile' && message.extra_data?.user_id) {
+            navigate(`/profile/${message.extra_data.user_id}`)
+        }
     }
 
     if (message.type === 'system') {
@@ -81,7 +91,10 @@ export function MessageItem({ message, isOwn, showAvatar, showSenderName, onReac
                             {message.content && <p className="message-caption">{message.content}</p>}
                         </div>
                     ) : message.type === 'post' ? (
-                        <div className="shared-content-preview post-preview">
+                        <div
+                            className="shared-content-preview post-preview clickable"
+                            onClick={handleSharedContentClick}
+                        >
                             {message.extra_data?.thumbnail && <img src={message.extra_data.thumbnail} alt="" />}
                             <div className="preview-meta">
                                 <span className="preview-label">Shared Post</span>
@@ -89,7 +102,10 @@ export function MessageItem({ message, isOwn, showAvatar, showSenderName, onReac
                             </div>
                         </div>
                     ) : message.type === 'profile' ? (
-                        <div className="shared-content-preview profile-preview">
+                        <div
+                            className="shared-content-preview profile-preview clickable"
+                            onClick={handleSharedContentClick}
+                        >
                             <Avatar src={message.extra_data?.avatar} fallback={message.content} size="sm" />
                             <div className="preview-meta">
                                 <span className="preview-label">Shared Profile</span>
